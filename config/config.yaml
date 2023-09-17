@@ -1,0 +1,8 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://github.com/Arshavin023/zip-files/raw/main/classification.zip
+  local_data_file: artifacts/data_ingestion/classification.zip
+  unzip_dir: artifacts/data_ingestion
