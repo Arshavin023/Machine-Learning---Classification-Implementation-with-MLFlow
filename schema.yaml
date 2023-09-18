@@ -1,1 +1,23 @@
-key: value
+COLUMNS:
+  credit_duration(month): int64
+  credit_amount: int64
+  duration_of_current_employment: int64
+  installment_percent: int64
+  guarantors: int64
+  duration_in_current_address: int64
+  age: int64
+  concurrent_credits: int64
+  no_of_credits_at_the_bank: int64
+  no_of_dependents: int64
+  account_type: object
+  payment_status_of_previous_loan: object
+  loan_purpose: object
+  savings_type: object
+  marital_status: object
+  most_valuable_asset: object
+  type_of_apartment: object
+  foreign_worker: object
+  occupation: object
+
+TARGET_COLUMN:
+  name: label
