@@ -16,8 +16,10 @@ COLUMNS:
   marital_status: object
   most_valuable_asset: object
   type_of_apartment: object
-  foreign_worker: object
   occupation: object
+  telephone: object
+  foreign_worker: object
+  label: int64
 
 TARGET_COLUMN:
   name: label

@@ -9,5 +9,10 @@ data_ingestion:
 data_validation:
   root_dir: artifacts/data_validation
   unzip_data_dir: artifacts/data_ingestion/classification.csv
-  STATUS_FILE: artifacts/data_validation.status.text
+  STATUS_FILE: artifacts/data_validation/status.text
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion/classification.csv
+  
 
