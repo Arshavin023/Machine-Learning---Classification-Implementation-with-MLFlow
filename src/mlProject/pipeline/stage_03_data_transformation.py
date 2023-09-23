@@ -11,7 +11,8 @@ class DataTransformationTrainingPipeline:
     
     def main(self):
         try:
-            with open(Path("C:/Users/Hp\Videos/classification implementation - machine learning with MLFlow/artifacts/data_validation/status.text"),"r") as f:
+            # C:/Users/Hp\Videos/classification implementation - machine learning with MLFlow/
+            with open(Path("artifacts/data_validation/status.text"),"r") as f:
                 status = f.read().split(' ')[-1]
 
             if status == "True":
