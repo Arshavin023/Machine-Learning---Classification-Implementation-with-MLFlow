@@ -1,9 +1,7 @@
 from mlProject.constants import *
 from mlProject.utils.common import read_yaml, create_directories
-from mlProject.entity.config_entity import DataIngestionConfig
-from mlProject.entity.config_entity import DataValidationConfig
-from mlProject.entity.config_entity import DataTransformationConfig
-
+from mlProject.entity.config_entity import (DataIngestionConfig, DataValidationConfig, 
+                                            DataTransformationConfig, ModelTrainerConfig)
 class ConfigurationManager:
     def __init__(
         self,
@@ -57,3 +55,34 @@ class ConfigurationManager:
         )
 
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.XGBClassifier
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            model_name=config.model_name,
+            learning_rate=params.learning_rate,
+            n_estimators=params.n_estimators,
+            max_depth=params.max_depth,
+            subsample=params.subsample,
+            colsample_bytree=params.colsample_bytree,
+            gamma=params.gamma,
+            reg_alpha=params.reg_alpha,
+            reg_lambda=params.reg_lambda,
+            min_child_weight=params.min_child_weight,
+            eval_metric=params.eval_metric,
+            early_stopping_rounds=params.early_stopping_rounds,
+            tree_method=params.tree_method,
+            scale_pos_weight = params.scale_pos_weight,
+            objective=params.objective,
+            target_column=schema.name
+        )
+
+        return model_trainer_config

@@ -13,6 +13,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, StandardScaler
 import pandas as pd
 from pandas import DataFrame
+from numpy import ndarray
+import numpy
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -129,7 +131,7 @@ def get_size(path: Path) -> str:
     return f"~ {size_in_kb} KB"
 
 @ensure_annotations
-def feature_processing(data: DataFrame):
+def feature_processor():
         
     # Define preprocessing for numerical categorical features
     numeric_features = [0,1,2,3,4,5,6,7,8,9]
@@ -150,8 +152,5 @@ def feature_processing(data: DataFrame):
             ('nom', nominal_transformer, nominal_features),
             ('ord', ordinal_transformer, ordinal_features)
         ])
-    
-    X_train = preprocessor.fit_transform(data)
 
-    return X_train
-
+    return preprocessor
