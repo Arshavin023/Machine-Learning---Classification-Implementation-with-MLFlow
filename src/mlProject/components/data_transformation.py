@@ -18,30 +18,38 @@ class DataTransformation:
 
         # Custom mapping
         occupation_mapping  = {
-            'service and sales': 0,
-            'skilled trades and technical': 1,
-            'manufacturing and production': 2,
-            'professional and managerial': 3}
+            'service and sales': 3,
+            'skilled trades and technical': 2,
+            'manufacturing and production': 4,
+            'professional and managerial': 1}
 
         type_of_apartment_mapping = {
-            'studio apartment': 0,
+            'studio apartment': 2,
             'one-bedroom apartment': 1,
-            'two or multi-bedroom apartment': 2}
+            'two or multi-bedroom apartment': 3}
 
+        telephone_mapping = {'yes':1, 'no':0}
+
+        foreign_mapping = {'yes':0, 'no':1}
         # Sample data
 
-        # Preprocess the data using the custom mapping
+        # Transforming ordinal categories with custom mapping
         apartment_preprocessed_data = [[type_of_apartment_mapping[category[0]]] for category in data[['type_of_apartment']].values]
 
         occupation_preprocessed_data = [[occupation_mapping[category[0]]] for category in data[['occupation']].values]
 
-        combined_ordinal_categories = np.concatenate((apartment_preprocessed_data,occupation_preprocessed_data),axis=1)
+        telephone_preprocessed_data = [[telephone_mapping[category[0]]] for category in data[['telephone']].values]
+
+        foreign_preprocessed_data = [[foreign_mapping[category[0]]] for category in data[['foreign_worker']].values]
+
+        combined_ordinal_categories = np.concatenate((apartment_preprocessed_data,occupation_preprocessed_data,
+                                                    telephone_preprocessed_data,foreign_preprocessed_data),axis=1)
 
         # Use OrdinalEncoder
         ordinal_encoder = OrdinalEncoder()
         encoded_data = ordinal_encoder.fit_transform(combined_ordinal_categories)
 
-        data[['type_of_apartment','occupation']] = combined_ordinal_categories
+        data[['type_of_apartment','occupation','telephone','foreign_worker']] = combined_ordinal_categories
 
         train, test = train_test_split(data, test_size=0.20, random_state=42)
         
@@ -56,6 +64,3 @@ class DataTransformation:
 
         print(train.shape)
         print(test.shape)
-
-
-

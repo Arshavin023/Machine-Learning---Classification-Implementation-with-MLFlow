@@ -8,8 +8,11 @@ from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-
-
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, StandardScaler
+import pandas as pd
+from pandas import DataFrame
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -124,3 +127,31 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+@ensure_annotations
+def feature_processing(data: DataFrame):
+        
+    # Define preprocessing for numerical categorical features
+    numeric_features = [0,1,2,3,4,5,6,7,8,9]
+    numeric_transformer = Pipeline(steps=[('scaler', StandardScaler())])
+
+    # Define preprocessing for nominal categorical features
+    nominal_features = [10,11,12,13,14,15]
+    nominal_transformer = Pipeline(steps=[('onehot', OneHotEncoder(handle_unknown='ignore'))])
+
+    # Define preprocessing for ordinal categorical features
+    ordinal_features = [16,17,18,19]
+    ordinal_transformer = Pipeline(steps=[('labelencoder', OrdinalEncoder())])
+
+    # Combine preprocessing steps
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', numeric_transformer, numeric_features),
+            ('nom', nominal_transformer, nominal_features),
+            ('ord', ordinal_transformer, ordinal_features)
+        ])
+    
+    X_train = preprocessor.fit_transform(data)
+
+    return X_train
+
