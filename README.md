@@ -20,7 +20,7 @@
 Clone the repository
 
 ```bash
-https://github.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow
+https://github.com/Arshavin023/Machine-Learning-Web-Application-for-Credit-Risk-Assessment
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
@@ -62,8 +62,9 @@ open up you local host and port
 ### dagshub
 [dagshub](https://dagshub.com/)
 
-MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow.mlflow \
-MLFLOW_TRACKING_USERNAME=entbappy \
+
+MLFLOW_TRACKING_URI=https://dagshub.com/Arshavin023/Machine-Learning-Web-Application-for-Credit-Risk-Assessment.mlflow \
+MLFLOW_TRACKING_USERNAME=Arshavin023 \
 MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0 \
 python script.py
 
@@ -71,9 +72,9 @@ Run this to export as env variables:
 
 ```bash
 
-export MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/End-to-end-Machine-Learning-Project-with-MLflow.mlflow
+export MLFLOW_TRACKING_URI=https://dagshub.com/Arshavin023/Machine-Learning-Web-Application-for-Credit-Risk-Assessment.mlflow
 
-export MLFLOW_TRACKING_USERNAME=entbappy 
+export MLFLOW_TRACKING_USERNAME=Arshavin023
 
 export MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0
 
