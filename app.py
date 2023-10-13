@@ -55,11 +55,11 @@ def index():
             features = numpy_to_pandas(reshaped_data)
             transformed_data = ordinal_category_encode(features)
     
-            model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
+            # model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
 
-            # # # obj = PredictionPipeline()
+            obj = PredictionPipeline()
 
-            predict = model.predict(transformed_data)
+            predict = obj.predict(transformed_data)
 
             if predict[0] == 1:
                 result = 'Congratulations, you are eligible for a loan'
