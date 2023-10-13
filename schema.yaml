@@ -1,12 +1,12 @@
 COLUMNS:
   credit_duration(month): int64
-  credit_amount: int64
+  credit_amount: float
   duration_of_current_employment: int64
-  installment_percent: int64
+  installment_percent: float
   guarantors: int64
   duration_in_current_address: int64
   age: int64
-  concurrent_credits: int64
+  concurrent_credits: float
   no_of_credits_at_the_bank: int64
   no_of_dependents: int64
   account_type: object

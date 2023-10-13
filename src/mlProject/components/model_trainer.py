@@ -46,4 +46,4 @@ class ModelTrainer:
 
         model_pipeline.fit(train_x,train_y)
 
-        joblib.dump(xgb,os.path.join(self.config.root_dir, self.config.model_name))
+        joblib.dump(model_pipeline,os.path.join(self.config.root_dir, self.config.model_name))

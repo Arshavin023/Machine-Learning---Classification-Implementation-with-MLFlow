@@ -30,7 +30,7 @@ class ModelEvaluation:
         model = joblib.load(self.config.model_path)
         preprocessor = feature_processor()
         test_x = test_data.drop([self.config.target_column],axis=1)
-        test_x = preprocessor.fit_transform(test_x)
+        # test_x = preprocessor.fit_transform(test_x)
         test_y = test_data[[self.config.target_column]]
 
         mlflow.set_registry_uri(self.config.mlflow_uri)

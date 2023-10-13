@@ -10,9 +10,7 @@ class PredictionPipeline:
         self.model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
 
     def predict(self, data):
-        preprocessor = feature_processor()
-        preprocessed_data = preprocessor.fit_transform(data)
-        prediction = self.model.predict(preprocessed_data)
+        prediction = self.model.predict(data)
 
         return prediction
 

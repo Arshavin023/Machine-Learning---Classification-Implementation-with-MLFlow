@@ -14,7 +14,7 @@ from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, StandardScaler
 import pandas as pd
 from pandas import DataFrame
 from numpy import ndarray
-import numpy
+import numpy as np
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -138,7 +138,7 @@ def feature_processor():
     numeric_transformer = Pipeline(steps=[('scaler', StandardScaler())])
 
     # Define preprocessing for nominal categorical features
-    nominal_features = [10,11,12,13,14,15]
+    nominal_features = [10,11,12,13,14,15,16,17,18,19]
     nominal_transformer = Pipeline(steps=[('onehot', OneHotEncoder(handle_unknown='ignore'))])
 
     # Define preprocessing for ordinal categorical features
@@ -154,3 +154,53 @@ def feature_processor():
         ])
 
     return preprocessor
+
+column_names = ['credit_duration(month)','credit_amount','duration_of_current_employment',
+ 'installment_percent','guarantors','duration_in_current_address','age','concurrent_credits',
+ 'no_of_credits_at_the_bank','no_of_dependents','account_type','payment_status_of_previous_loan',
+ 'loan_purpose','savings_type','marital_status','most_valuable_asset','type_of_apartment',
+ 'occupation','telephone','foreign_worker']
+
+def numpy_to_pandas(data):
+    df = pd.DataFrame(data,columns=column_names)
+    return df
+
+def ordinal_category_encode(data):
+            # feature engineering for ordinal categorical data        
+
+        # Custom mapping
+        occupation_mapping  = {
+            'service and sales': 3,
+            'skilled trades and technical': 2,
+            'manufacturing and production': 4,
+            'professional and managerial': 1}
+
+        type_of_apartment_mapping = {
+            'studio apartment': 2,
+            'one-bedroom apartment': 1,
+            'two or multi-bedroom apartment': 3}
+
+        telephone_mapping = {'yes':1, 'no':0}
+
+        foreign_mapping = {'yes':0, 'no':1}
+        # Sample data
+
+        # Transforming ordinal categories with custom mapping
+        apartment_preprocessed_data = [[type_of_apartment_mapping[category[0]]] for category in data[['type_of_apartment']].values]
+
+        occupation_preprocessed_data = [[occupation_mapping[category[0]]] for category in data[['occupation']].values]
+
+        telephone_preprocessed_data = [[telephone_mapping[category[0]]] for category in data[['telephone']].values]
+
+        foreign_preprocessed_data = [[foreign_mapping[category[0]]] for category in data[['foreign_worker']].values]
+
+        combined_ordinal_categories = np.concatenate((apartment_preprocessed_data,occupation_preprocessed_data,
+                                                    telephone_preprocessed_data,foreign_preprocessed_data),axis=1)
+
+        # Use OrdinalEncoder
+        ordinal_encoder = OrdinalEncoder()
+        encoded_data = ordinal_encoder.fit_transform(combined_ordinal_categories)
+
+        data[['type_of_apartment','occupation','telephone','foreign_worker']] = combined_ordinal_categories
+
+        return data
