@@ -25,11 +25,11 @@ https://github.com/Arshavin023/Machine-Learning-Web-Application-for-Credit-Risk-
 ### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-conda create -n mlproj python=3.8 -y
+conda create -n .venv python=3.8 -y
 ```
 
 ```bash
-conda activate mlproj
+conda activate .venv
 ```
 
 
