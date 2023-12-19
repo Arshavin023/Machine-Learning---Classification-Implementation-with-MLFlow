@@ -1,4 +1,5 @@
-# Machine-Learning---Classification-Implementation-with-MLFlow
+## Description
+This project focused on developing a comprehensive machine learning solution for assessing loan applications. It covered the entire machine learning lifecycle, including data ingestion, data preprocessing, training of different classifiers, and meticulous model optimization. The optimized model was integrated into a Flask Web application. To enhance scalability and streamlined deployment, the entire system was containerized using Docker and deployed on Amazon Web Services, utilizing services like EC2, ECR and IAM. Continuous Integration/Continuous Deployment (CICD) pipeline was implemented through GitHub Actions.
 
 ## Workflows
 
